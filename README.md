@@ -7,6 +7,12 @@ is a personal web task manager that helps you plan your day, manage projects and
 
 ## Run
 ```shell
+git clone https://github.com/szerel/szThings
+```
+```shell
+pip install - r requirements.txt
+```
+```shell
 python3 manage.py runserver
 ```
 ```shell
