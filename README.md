@@ -45,6 +45,12 @@ Go to http://127.0.0.1:8000/profile/
             add
 
 ```
+## Screenshots
+### Start Page
+![menu](https://telegra.ph/file/ae304f15c062b2205ebf3.png)
+### Web tasks
+![task1](https://telegra.ph/file/04ddaf7b4288550c704d0.png)
+
 
 ## Disclaimer
 This code, is riddled with humor and satire. Please don't take it too seriously or take it personally. After all, programming is an art that allows us to express ourselves, even if it's in a funny and ironic way. Use code with a smile on your face, and remember that true programming prowess also includes the ability to handle the nuances of life with ease and good humor. Happy coding!
