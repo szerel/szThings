@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+    <H1>Your profile</H1>
+
+
+<body class="backgroundextension">
+    <div class="page">
+        <div class="slice for-office" style="background: none;">
+            <div class="container">
+                <div class="paperoveroffice" style="margin: 50px auto">
+                    <div class="paperoveroffice-body">
+                    {% if user.is_staff %}
+{#                        <form method="POST">#}
+{#                        {% csrf_token %}#}
+{#                        <button class="button is-strong is-small" type="submit" name="PUSHtest" value="1">Push</button>#}
+{#                        </form>#}
+                    {% else %}
+
+                    {% endif %}
+
+                        <h2 class="h2 is-tight">Add new project</h2>
+{% if id is None %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.title }}  <button class="button is-strong is-small" type="submit" name="addGroup" value="{{next}}">Add</button>
+                        </form>
+{% else %}
+    <form method="POST">
+                            {% csrf_token %}
+                            {{ form.title }}  <button class="button is-strong is-small" type="submit" name="saveGroup" value="{{id}}">Save</button></p>
+                        </form>
+{% endif %}
+                    <h2 class="h2 is-tight">Your projects</h2>
+                    {% for i in data %}
+                        <form method="POST">
+                {% csrf_token %}
+                        <p class="mailinglist-message" style="background: #2b323b;">
+                        <ul class="ul is-comfy" style="padding-right: 1.1em; padding-bottom: 5px !important; font-weight: 500; color: rgb(255, 255, 255); background: rgb(43, 50, 59); border-radius: 10px; margin-bottom: 0px !important; padding-left: 10px !important; padding-top: 10px !important;">
+                            <button class="button is-strong is-small" style="height: 27px; background-color: red; width: 31.152942px !important; padding: 0px !important;" name="hideGroup" value="{{i.id}}">✖</button>
+                            <button class="button is-small" name='editGroup' style="background: rgb(175, 182, 193); width: 27px; height: 27px; margin-bottom: 0px !important; bottom: 0px !important; margin-top: 0px !important; padding: 0px !important;" value="{{i.id}}">✏️</button>⠀|
+                            <div style="color: #fff; border-left-style: solid !important; border-left-width: 0px !important; margin-left: 90px !important; margin-top: -28px !important; margin-bottom: -15px !important;">
+                                {{i.title|linebreaks }}</div></ul></p>
+                        {% endfor %}
+                        </form>
+                    </div>
+                </div> <!-- paperoveroffice -->
+            </div>
+        </div>
+    </div>
+</body>
+
+        {% for i in data %}
+            <form method="POST">
+                {% csrf_token %}
+                    <div class="container" style="padding-left: 0px !important; padding-right: 0px !important">
+                        <div class="paperoveroffice" style="max-width: 100%; margin: 5px auto;">
+                            <div class="paperoveroffice-body" style="background: rgba(0,25,61,.1) ; padding: 0.5em; border-radius: 18px !important;">
+                                <div class="mailinglist-item for-email" style="margin-right: auto;">
+                                    <ul class="ul is-comfy" style="margin-bottom: 0px !important; padding-left: 10px !important; padding-top: 10px !important;"><button class="button is-strong is-small" style="height: 27px; background-color: rgb(79, 145, 251); width: 31.152942px !important; padding: 0px !important;" name="hideTask" value="{{i.id}}">✓</button>   <button class="button is-small" style="background: rgb(175, 182, 193); width: 27px; height: 27px; margin-bottom: 0px !important; bottom: 0px !important; margin-top: 0px !important; padding: 0px !important;" value="{{i.id}}">✏️</button><div style="color: #44474b; border-left-style: solid !important; border-left-width: 0px !important; margin-left: 130px !important; margin-top: -15px !important; margin-bottom: -15px !important;">{{i.title|linebreaks }}</div></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

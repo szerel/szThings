@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %} 404 {% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="https://culturedcode.com/404/2022-12-13/404.css">
+<div class="blackhole">
+				<div class="blackhole-starfield for-1"></div>
+				<div class="blackhole-starfield for-2"></div>
+				<div class="blackhole-starfield for-3"></div>
+				<div class="blackhole-error">
+					<h1 class="blackhole-code">404</h1>
+					<p class="blackhole-message">Sorry, the page you’re looking for can’t be found.</p>
+					<a class="button is-strong for-blackhole" href={% url 'home' %}>Back Home</a>
+				</div>
+
+
+			</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,89 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+    {% block title %}
+        {% if user.is_authenticated %}
+Logbook
+        {% else %}
+About
+        {% endif %}
+    {% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+    <H1>Logbook</H1>
+<div class="container is-compact" style="padding-top: 36px !important;">
+            {% if data %}
+            {% for i in data %}
+                <form method="POST">
+                {% csrf_token %}
+                    <ul style="box-shadow: rgba(38, 52, 74, 0.15) 0px 1px 0px; padding-bottom: 10px !important;">
+                <button class="button is-strong is-small" style="height: 27px; background-color: red; width: 31.152942px !important; padding: 0px !important;" name="deleteTask" value="{{i.id}}">✖</button>
+                            <button class="button is-small" name='restoreTask' style="background: rgb(175, 182, 193); width: 27px; height: 27px; margin-bottom: 0px !important; bottom: 0px !important; margin-top: 0px !important; padding: 0px !important;" value="{{i.id}}">⤴</button>⠀|
+            {{i.title}}
+                </form></ul>
+            {% endfor %}
+            {% endif %}
+</div>
+
+
+
+
+
+    {% else %}
+
+<body class="backgroundextension">
+    <div class="page">
+        <div class="slice for-office" style="background: none;">
+            <div class="container">
+                <div class="paperoveroffice" style="margin: 50px auto">
+                    <div class="paperoveroffice-body">
+
+                        <h2 class="h2 is-tight">About Us</h2>
+                        <p class="introduction">I am passionate about productivity, simplicity, and beautiful design.</p>
+                        <p>In search of perfection, I tried more and more new approaches, putting the code together like puzzles. I spent hours and days in front of the screen, dreaming about the moment when this code will work without errors (I know, ha ha ha). How many times have I seen these messages that seemed to be running everywhere! But what can you do, is there a code without bugs? I want to say: "Remember that laughter, even at ourselves, always brings joy and allows us to grow in our passion."</p>
+
+                    </div>
+                </div> <!-- paperoveroffice -->
+
+
+                <div class="paperoveroffice" style="margin: 50px auto">
+                    <div class="paperoveroffice-body">
+
+                        <h2 class="h2 is-tight">Come Work With Me</h2>
+                        <div class="figure">
+                            <img src="{% static 'main/img/logo_we.png'%}" width="280" height="140" alt="We are hiring!">
+                        </div>
+
+                        <p>I'm not just looking for qualified programmers. <strong>I</strong> am looking for those who breathe sincere inspiration, those who radiate energy and positive, who are able to turn any difficulty into an exciting adventure. Because people like us <strong>LOVE</strong> magic and bring the most daring ideas to life.</p>
+
+                        <p>Let my words become a congratulatory song for <strong>YOU</strong> who are looking for their place in programming. Let your burning eyes be your compass, and the ability to positively meet difficulties and solve them cheerfully your faithful companion on this exciting journey.</p>
+
+                        <p><a class="button" href="https://t.me/szerel">My Telegram</a></p>
+
+                    </div>
+                </div> <!-- paperoveroffice -->
+
+
+                <div class="paperoveroffice" style="margin: 50px auto">
+                    <div class="paperoveroffice-body">
+
+
+                        <h2 class="h2 is-tight">Thanks 🎉</h2>
+
+                        <p class="fineprint">
+                            With great joy, I combine the words into a beautiful message: "It was a wonderful story, and I am incredibly proud of our acquaintance."<br>
+
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+    {% endif %}
+{% endblock %}

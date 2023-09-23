@@ -1,0 +1,117 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Registration {% endblock %}
+
+{% block content %}
+{#<div class="container" style="border-radius: 30px; box-shadow: 1px 1px 10px lightslategrey; width: 20%; padding: 2%; display: block; text-align: center; position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%)">#}
+<form class="section" method="POST">
+    {% csrf_token %}
+    <div class="slice for-newsletter has-lighter-bg">
+                <div class="container">
+                    <div class="paperoveroffice" style="margin: 5px auto; max-width: 350px">
+                        <div class="paperoveroffice-body">
+                            <div class="mailinglist-item for-email" style="margin-bottom: 0px !important;margin-left: auto;  margin-right: auto;">
+                                <h4 style="margin: 0px auto; margin-bottom: 1px; ">Display name</h4><input class="mailinglist-textfield textfield is-large is-white" id="mailinglist-textfield-email" type="text" name="username" value="{{ name }}" placeholder="Enter your Username" style="margin: 5px auto"><br>
+                                <p style="margin: 0 0 0 0.3em;color: red;font-size: 0.8em;">{{ errorName }}</p>
+                                <h4 style="margin: 30px auto; margin-bottom: 1px">Email</h4><input class="mailinglist-textfield textfield is-large is-white" id="mailinglist-textfield-password" type="email" name="email" value="{{ email }}" placeholder="Enter your Email" style="margin: 5px auto"><br>
+                                <p style="margin: 0 0 0 0.3em;color: red;font-size: 0.8em;">{{ errorMail }}</p>
+                                <div class="password"><h4 style="margin: 30px auto; margin-bottom: 1px">Password</h4><input id="password-input" class="mailinglist-textfield textfield is-large is-white" id="mailinglist-textfield-password" type="password" name="password1" value="{{ password1 }}" placeholder="Enter your Password" style="width: 80%;margin: 5px auto"><a href="#" style="margin-top: 10%;margin-right: 5%;}" class="password-control"></a></div>
+                                <p style="margin: 0 0 0 0.3em;color: red;font-size: 0.8em;">{{ errorPass1 }}</p>
+{#                                <h4 style="margin: 30px auto; margin-bottom: 1px">Repeat Password</h4><input class="mailinglist-textfield textfield is-large is-white" id="mailinglist-textfield-password" value="{{ password2 }}" type="password" name="password2" placeholder="Repeat your Password" style="margin: 5px auto"><br>#}
+{#                                <p style="margin: 0 0 0 0.3em;color: red;font-size: 0.8em;">{{ errorPass2 }}</p>#}
+{#<div class="paperoveroffice" style="margin-top: 50px; margin-right: auto; margin-bottom: 0px !important; margin-left: auto;">#}
+{#                    <div class="paperoveroffice-body" style="padding: 1em;background: #2b323b;border-radius: 20px;">#}
+                                <p class="fineprint" style="color: rgba(4,15,26,.5);margin-bottom: 3%; margin-top: 3%; font-size: .7em; text-align: left;">
+                                    Passwords must contain at least eight characters, including at least 1 letter and 1 number.
+                                </p>
+{#                    </div>#}
+{#</div>#}
+
+                                <button style="margin-bottom: 30px; display: block; margin: 30px auto; width:200px !important" class="button is-strong is-big" type="submit" name="next" value="{{next}}">Sing up</button>
+
+                            <p class="fineprint" style="box-shadow: 0 -1px 0 rgba(38,52,74,.15);color: rgba(4,15,26,.5);padding-top: 0.3em;margin-bottom: 0px !important;font-size: .7em; text-align: center;">
+                                Already have an account? <a href="{%url 'login' %}?next=">Log in</a>
+                                </p>
+{#                                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
+
+{#                            {{ register.as_p }}#}
+
+
+
+<style type="text/css">
+.password {
+	width: 300px;
+	margin: 15px auto;
+	position: relative;
+}
+{##password-input {#}
+{#	width: 100%;#}
+{#	padding: 5px 0;#}
+{#	height: 30px;#}
+{#	line-height: 40px;#}
+{#	text-indent: 10px;#}
+{#	margin: 0 0 15px 0;#}
+{#	border-radius: 5px;#}
+{#	border: 1px solid #999;#}
+{#	font-size: 18px;#}
+{#}#}
+.password-control {
+	position: absolute;
+	top: 11px;
+	right: 6px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+}
+.password-control.view {
+	background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+}
+</style>
+
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$('body').on('click', '.password-control', function(){
+	if ($('#password-input').attr('type') == 'password'){
+		$(this).addClass('view');
+		$('#password-input').attr('type', 'text');
+	} else {
+		$(this).removeClass('view');
+		$('#password-input').attr('type', 'password');
+	}
+	return false;
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+
+{% if error %}
+
+        {% for key, value in error.items %}
+            <hr>{{ key }}: {{ value }}
+        {% endfor %}
+        {{ key }}
+
+{% endif  %}
+{% endblock %}
+
+{% block description %} about {% endblock %}
+
+{% block main_description %} Registration {% endblock %}

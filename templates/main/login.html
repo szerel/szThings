@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+        <form class="section" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="slice for-newsletter has-lighter-bg" style="padding-bottom: 1em;">
+                <div class="container">
+                    <div class="paperoveroffice" style="margin: 5px auto; max-width: 350px">
+                        <div class="paperoveroffice-body">
+                            <div class="mailinglist-item for-email" style="margin-left: auto;  margin-right: auto;">
+                                <h4 style="margin: 0px auto; margin-bottom: 1px">Name</h4><input class="mailinglist-textfield textfield is-large is-white" id="mailinglist-textfield-email" type="username" name="username" placeholder="Enter your User name" style="margin: 5px auto"><br>
+                                <h4 style="margin: 30px auto; margin-bottom: 1px">Password</h4><input class="mailinglist-textfield textfield is-large is-white" id="mailinglist-textfield-password" type="password" name="password" placeholder="Enter your Password" style="margin: 5px auto"><br>
+                                <button style="display: block; margin: 30px auto; margin-bottom: 0px; width:200px !important" class="button is-strong is-big" type="submit" name="next" value="{{next}}">Login</button>
+{#                                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+        {% if error %}
+        <div class="container">
+            <div class="mailinglist is-initialized is-successful has-message">
+                <div class="mailinglist-message">
+                <p style="margin-bottom: 0px !important;margin-left: 20%;">{{error}}</p>
+
+                </div>
+                {% include 'main/close_button.html' %}
+            </div>
+        </div>
+        {% endif  %}
+
+{% endblock %}

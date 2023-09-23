@@ -1,0 +1,70 @@
+
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+<head style="background-color: #f2f5f7; ">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://culturedcode.com/things/2022-07-21/things.css?breakcache=mfsawb9w">
+    <link rel="stylesheet" href="https://culturedcode.com/global/shared/2021-09-12/shared.css?breakcache=elogswjr">
+    <link rel="stylesheet" href="https://culturedcode.com/mailinglist/2022-12-13/mailinglist.css?breakcache=khye541a">
+    <link rel="stylesheet" href="https://culturedcode.com/global/shared/2021-09-12/tweetgrid.css?breakcache=can26s5a">
+    <link rel="stylesheet" href="https://culturedcode.com/about/2022-12-13/about.css">
+    <link rel="stylesheet" href="https://culturedcode.com/global/shared/2021-09-12/shared.css?breakcache=elogswjr">
+    <link data-n-head="ssr" rel="icon" type="image/png" size="32" data-hid="favicon-32" href="{% static 'main/img/logo_fav.png' %}">
+    <link rel="manifest" href="{% static 'main/img/manifest.json' %}">
+</head>
+<body class="body has-lighter-bg">
+    <header>
+        <div class="container">
+            <div class="navigation is-monochrome">
+                <div class="navigation-bar" style="padding-top: 10px !important;">
+                    <a class="navigation-logo is-selected">
+                        <a class="navigation-logobutton" style="background-image:url({% static 'main/img/logo.png' %}); width: 116px; border-top-style: solid !important; border-top-width: 0px !important; margin-top: 10px !important;" href="{% url 'home' %}">szThings</a>
+
+                        <ul class="navigation-list">
+                            {% if not user.is_authenticated %}
+                        <li class="navigation-item for-whatsnew">
+                            <a class="navigation-button" href="{% url 'about' %}">
+                                <span class="navigation-icon"></span>
+                                <span class="navigation-title">About</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="navigation-item for-support">
+                            <a class="navigation-button" href="{% url 'about' %}">
+                                <span class="navigation-icon"></span>
+                                <span class="navigation-title">Logbook</span>
+                            </a>
+                        </li>
+                    {% endif %}
+{% if user.is_authenticated %}
+                        <a href="{%url 'profile' %}"><button type="button" style="border: 2px solid #4f91fb;color: #000;background: hsl(210, 20%, 96.08%);" class="button is-strong is-small">{{user.get_username}}</button></a>
+                        <a href="{%url 'logout' %}"><button type="button" style="border: 2px solid #4f91fb;" class="button is-strong is-small" value="{{next}}">Log out</button></a>
+{#                        <a href="{%url 'home' %}?next={{request.path}}"><button type="button" class="button is-strong is-small">+</button></a>#}
+{% else %}
+                        <a href="{%url 'login' %}?next={{request.path}}"><button type="button" style="border: 2px solid #4f91fb;color: #000;background: hsl(210, 20%, 96.08%);" class="button is-strong is-small">Log in</button></a>
+                        <a href="{%url 'register' %}"><button type="button" style="border: 2px solid #4f91fb;" class="button is-strong is-small">Sign up</button></a>
+{% endif %}
+                    </ul>
+                    </div>
+
+
+
+        </div>
+    </header>
+
+    <div class="container">
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+</body>
+</html>
